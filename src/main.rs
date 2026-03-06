@@ -3,7 +3,8 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 #[command(
     name = "rgrep",
-    about = "The fzf line implementation for grep in my own style"
+    about = "The fzf line implementation for grep in my own style",
+allow_external_subcommands = true, // <- ignores unknown args
 )]
 struct Cli {
     #[arg(short, long)]
@@ -12,9 +13,6 @@ struct Cli {
     #[arg(short, long)]
     ignore_case: bool,
 
-    // ignore evrything after the flags
-    #[arg(last = true, allow_hyphen_values = true)]
-    pattern: Option<String>,
 }
 
 fn main() {
